@@ -1,0 +1,254 @@
+[
+    {
+        "nombre": "Análisis Matemático I",
+        "numero": 1,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Álgebra y Geometría Analítica",
+        "numero": 2,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Física I",
+        "numero": 3,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Inglés I",
+        "numero": 4,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Lógica y Estructuras Discretas",
+        "numero": 5,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Algoritmos y Estructuras de Datos",
+        "numero": 6,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Arquitectura de Computadoras",
+        "numero": 7,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Sistemas y Procesos de Negocio",
+        "numero": 8,
+        "nivel": 1,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Análisis Matemático II",
+        "numero": 9,
+        "nivel": 2,
+        "cursadas": [1, 2],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Física II",
+        "numero": 10,
+        "nivel": 2,
+        "cursadas": [1, 3],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Ingeniería y Sociedad",
+        "numero": 11,
+        "nivel": 2,
+        "cursadas": [],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Inglés II",
+        "numero": 12,
+        "nivel": 2,
+        "cursadas": [4],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Sintaxis y Semántica de los Lenguajes",
+        "numero": 13,
+        "nivel": 2,
+        "cursadas": [5, 6],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Paradigmas de Programación",
+        "numero": 14,
+        "nivel": 2,
+        "cursadas": [5, 6],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Sistemas Operativos",
+        "numero": 15,
+        "nivel": 2,
+        "cursadas": [7],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Análisis de Sistemas de Información (integradora)",
+        "numero": 16,
+        "nivel": 2,
+        "cursadas": [6, 8],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Probabilidad y Estadística",
+        "numero": 17,
+        "nivel": 3,
+        "cursadas": [1, 2],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Economía",
+        "numero": 18,
+        "nivel": 3,
+        "cursadas": [],
+        "aprobadas": [1, 2]
+    },
+    {
+        "nombre": "Bases de Datos",
+        "numero": 19,
+        "nivel": 3,
+        "cursadas": [13, 16],
+        "aprobadas": [5, 6]
+    },
+    {
+        "nombre": "Desarrollo de Software",
+        "numero": 20,
+        "nivel": 3,
+        "cursadas": [14, 16],
+        "aprobadas": [5, 6]
+    },
+    {
+        "nombre": "Comunicación de Datos",
+        "numero": 21,
+        "nivel": 3,
+        "cursadas": [],
+        "aprobadas": [3, 7]
+    },
+    {
+        "nombre": "Análisis Numérico",
+        "numero": 22,
+        "nivel": 3,
+        "cursadas": [9],
+        "aprobadas": [1, 2]
+    },
+    {
+        "nombre": "Diseño de Sistemas de Información (integradora)",
+        "numero": 23,
+        "nivel": 3,
+        "cursadas": [14, 16],
+        "aprobadas": [4, 6, 8]
+    },
+    {
+        "nombre": "Legislación",
+        "numero": 24,
+        "nivel": 4,
+        "cursadas": [11],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Ingeniería y Calidad de Software",
+        "numero": 25,
+        "nivel": 4,
+        "cursadas": [19, 20, 23],
+        "aprobadas": [13, 14]
+    },
+    {
+        "nombre": "Redes de Datos",
+        "numero": 26,
+        "nivel": 4,
+        "cursadas": [15, 21],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Investigación Operativa",
+        "numero": 27,
+        "nivel": 4,
+        "cursadas": [17, 22],
+        "aprobadas": []
+    },
+    {
+        "nombre": "Simulación",
+        "numero": 28,
+        "nivel": 4,
+        "cursadas": [17],
+        "aprobadas": [9]
+    },
+    {
+        "nombre": "Tecnologías para la automatización",
+        "numero": 29,
+        "nivel": 4,
+        "cursadas": [10, 22],
+        "aprobadas": [9]
+    },
+    {
+        "nombre": "Administración de Sistemas de Información (integradora)",
+        "numero": 30,
+        "nivel": 4,
+        "cursadas": [18, 23],
+        "aprobadas": [16]
+    },
+    {
+        "nombre": "Inteligencia Artificial",
+        "numero": 31,
+        "nivel": 5,
+        "cursadas": [28],
+        "aprobadas": [17, 22]
+    },
+    {
+        "nombre": "Ciencia de Datos",
+        "numero": 32,
+        "nivel": 5,
+        "cursadas": [28],
+        "aprobadas": [17, 19]
+    },
+    {
+        "nombre": "Sistemas de Gestión",
+        "numero": 33,
+        "nivel": 5,
+        "cursadas": [18, 27],
+        "aprobadas": [23]
+    },
+    {
+        "nombre": "Gestión Gerencial",
+        "numero": 34,
+        "nivel": 5,
+        "cursadas": [24, 30],
+        "aprobadas": [18]
+    },
+    {
+        "nombre": "Seguridad en los Sistemas de Información",
+        "numero": 35,
+        "nivel": 5,
+        "cursadas": [26, 30],
+        "aprobadas": [20, 21]
+    },
+    {
+        "nombre": "Proyecto Final (integradora)",
+        "numero": 36,
+        "nivel": 5,
+        "cursadas": [25, 26, 30],
+        "aprobadas": [12, 20, 23]
+    }
+]
