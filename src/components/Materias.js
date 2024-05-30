@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { AwesomeButton } from 'react-awesome-button'
 import useHorizontalScroll from '@revolt-digital/use-horizontal-scroll'
 
 function Materias(){
@@ -27,21 +26,55 @@ function Materias(){
         setMaterias(fetchedMaterias)
     }
 
+    const uncheckDepend = (numero, tipo) => {
+        for (let mat of materias) {
+            if (tipo === "cursada") {
+                if (mat.cursadas.includes(numero) && cursadas.includes(mat.numero)) {
+                    setCursadas(prevCursadas => {
+                        const newCursadas = prevCursadas.filter(n => n !== mat.numero)
+                        uncheckDepend(mat.numero, "cursada")
+                        return newCursadas
+                    })
+                    setAprobadas(prevAprobadas => prevAprobadas.filter(n => n !== mat.numero))
+                }
+            } else {
+                if (mat.aprobadas.includes(numero) && aprobadas.includes(mat.numero)) {
+                    setCursadas(prevCursadas => {
+                        const newCursadas = prevCursadas.filter(n => n !== mat.numero)
+                        uncheckDepend(mat.numero, "aprobada")
+                        return newCursadas
+                    })
+                    setAprobadas(prevAprobadas => prevAprobadas.filter(n => n !== mat.numero))
+                }
+            }
+        }
+    }
+
     const toggleCursadas = (numero) => {
-        setCursadas(prevCursadas => 
-            prevCursadas.includes(numero) 
-                ? prevCursadas.filter(n => n !== numero) 
-                : [...prevCursadas, numero]
-        );
-    };
+        setCursadas(prevCursadas => {
+            if(prevCursadas.includes(numero)){
+                uncheckDepend(numero, "cursada")
+                setAprobadas(prevAprobadas=> prevAprobadas.filter(n => n !== numero))
+                return prevCursadas.filter(n => n !== numero) 
+            }else{
+                return [...prevCursadas, numero]
+            }
+        })
+    }
 
     const toggleAprobadas = (numero) => {
-        setAprobadas(prevAprobadas => 
-            prevAprobadas.includes(numero) 
-                ? prevAprobadas.filter(n => n !== numero) 
-                : [...prevAprobadas, numero]
-        );
+        setAprobadas(prevAprobadas => {
+            if (prevAprobadas.includes(numero)) {
+                uncheckDepend(numero, "aprobada")
+                return prevAprobadas.filter(n => n !== numero);
+            } else {
+                setCursadas(prevCursadas=> [...prevCursadas, numero])
+                return [...prevAprobadas, numero];
+            }
+        })
     };
+
+    const checker = (arr, target) => target.every(v => arr.includes(v));
 
     return (
         <div id='scroll' ref={ref}>
@@ -51,7 +84,11 @@ function Materias(){
                         {materias.filter(mat => mat.nivel === nivel).map(mat => (
                             <div 
                                 key={mat.numero} 
-                                className={`materia ${cursadas.includes(mat.numero) ? "" : "no-cursada"} ${aprobadas.includes(mat.numero) ? "aprobada" : ""}`}
+                                className={`materia ${cursadas.includes(mat.numero) ? "" : "no-cursada"} 
+                                ${aprobadas.includes(mat.numero) ? "aprobada" : ""}
+                                ${checker(cursadas, mat.cursadas) ? "d-block" : "unavailable"}
+                                ${checker(aprobadas, mat.aprobadas) ? "d-block" : "unavailable"}
+                                `}
                             >
                                 <h2>{mat.nombre}</h2>
                                 <div className='d-flex'>
@@ -63,6 +100,7 @@ function Materias(){
                                             type='checkbox' 
                                             onChange={() => toggleCursadas(mat.numero)} 
                                             checked={cursadas.includes(mat.numero)} 
+                                            disabled={!checker(cursadas, mat.cursadas)}
                                         />
                                     </div>
                                     <div>
@@ -73,6 +111,7 @@ function Materias(){
                                             type='checkbox' 
                                             onChange={() => toggleAprobadas(mat.numero)} 
                                             checked={aprobadas.includes(mat.numero)} 
+                                            disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
                                         />
                                     </div>
                                 </div>
