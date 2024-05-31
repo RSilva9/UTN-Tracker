@@ -14,15 +14,19 @@
 
     .nivelBlock{
         margin: 0px 20px;
+
         .materia{
             border: solid black 1px;
             background-color: aquamarine;
             margin-bottom: 5px;
             cursor: pointer;
             padding: 10px;
+            height: 80px;
+            overflow: hidden;
             h2{
                 font-size: 1.5em;
             }
+            transition: 0.5s ease;
         }
     }
 }
@@ -37,4 +41,8 @@
 
 .unavailable{
     background-color: red !important;
+}
+
+.expanded{
+    height: 400px !important;
 }

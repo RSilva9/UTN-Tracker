@@ -27,6 +27,9 @@ body {
   margin-bottom: 5px;
   cursor: pointer;
   padding: 10px;
+  height: 80px;
+  overflow: hidden;
+  transition: 0.5s ease;
 }
 .materiasContainer .nivelBlock .materia h2 {
   font-size: 1.5em;
@@ -42,4 +45,8 @@ body {
 
 .unavailable {
   background-color: red !important;
+}
+
+.expanded {
+  height: 400px !important;
 }/*# sourceMappingURL=main.css.map */

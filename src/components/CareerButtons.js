@@ -4,14 +4,14 @@ function CareerButtons(){
     return(
         <div className='d-flex justify-content-evenly'>
             <AwesomeButton type='primary'>Sistemas</AwesomeButton>
-            <AwesomeButton type='primary'>Civil</AwesomeButton>
-            <AwesomeButton type='primary'>Energía Eléctrica</AwesomeButton>
-            <AwesomeButton type='primary'>Electrónica</AwesomeButton>
-            <AwesomeButton type='primary'>Industrial</AwesomeButton>
-            <AwesomeButton type='primary'>Mecánica</AwesomeButton>
-            <AwesomeButton type='primary'>Naval</AwesomeButton>
-            <AwesomeButton type='primary'>Química</AwesomeButton>
-            <AwesomeButton type='primary'>Textil</AwesomeButton>
+            <AwesomeButton type='danger'>Civil</AwesomeButton>
+            <AwesomeButton type='danger'>Energía Eléctrica</AwesomeButton>
+            <AwesomeButton type='danger'>Electrónica</AwesomeButton>
+            <AwesomeButton type='danger'>Industrial</AwesomeButton>
+            <AwesomeButton type='danger'>Mecánica</AwesomeButton>
+            <AwesomeButton type='danger'>Naval</AwesomeButton>
+            <AwesomeButton type='danger'>Química</AwesomeButton>
+            <AwesomeButton type='danger'>Textil</AwesomeButton>
         </div>
     )
 }
