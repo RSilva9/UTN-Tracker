@@ -7,11 +7,11 @@ body {
   display: flex;
   flex-direction: row;
   margin: 25px 0px;
-  width: 120vw;
-  overflow-x: scroll;
+  width: -moz-max-content;
+  width: max-content;
 }
 .materiasContainer .nivelBlock {
-  margin: 0px 20px;
+  margin: 0px 60px 0px 15px;
 }
 .materiasContainer .nivelBlock .materia {
   border: solid black 1px;
@@ -41,4 +41,12 @@ body {
 
 .expanded {
   height: 400px !important;
+}
+
+.scale {
+  transform: scale(1.05);
+}
+
+.transparent {
+  opacity: 40%;
 }/*# sourceMappingURL=main.css.map */
