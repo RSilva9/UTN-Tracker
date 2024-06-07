@@ -3,20 +3,12 @@ body {
   margin: 0;
 }
 
-#scroll {
-  width: 100%;
-  height: auto;
-  min-height: 100px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-
 .materiasContainer {
   display: flex;
   flex-direction: row;
   margin: 25px 0px;
-  width: -moz-max-content;
-  width: max-content;
+  width: 120vw;
+  overflow-x: scroll;
 }
 .materiasContainer .nivelBlock {
   margin: 0px 20px;

@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import useHorizontalScroll from '@revolt-digital/use-horizontal-scroll'
-import { Accordion } from 'react-bootstrap'
 
 function Materias(){
     const [materias, setMaterias] = useState([])
@@ -27,9 +25,6 @@ function Materias(){
             if (item.dataset.open === "false") {
                 item.classList.add("expanded")
                 item.dataset.open = "true"
-                // setTimeout(() => {
-                //     window.scrollTo(window.pageXOffset, document.body.scrollHeight)
-                // }, 300);
             } else {
                 item.classList.remove("expanded")
                 item.dataset.open = "false"
@@ -52,24 +47,28 @@ function Materias(){
     }
 
     const uncheckDepend = (numero, tipo) => {
-        for (let mat of materias) {
-            if (tipo === "cursada") {
-                if (mat.cursadas.includes(numero) && cursadas.includes(mat.numero)) {
-                    setCursadas(prevCursadas => {
-                        const newCursadas = prevCursadas.filter(n => n !== mat.numero)
-                        uncheckDepend(mat.numero, "cursada")
-                        return newCursadas
-                    })
+        if(tipo === "cursada"){
+            for(let mat of materias){ // Loopear todas las materias del programa
+                if(mat.cursadas.includes(numero)){ // Si la materia necesita tener cursada la materia "numero"
                     setAprobadas(prevAprobadas => prevAprobadas.filter(n => n !== mat.numero))
-                }
-            } else {
-                if (mat.aprobadas.includes(numero) && aprobadas.includes(mat.numero)) {
                     setCursadas(prevCursadas => {
-                        const newCursadas = prevCursadas.filter(n => n !== mat.numero)
+                        const newCursadas = prevCursadas.filter(n => n !== mat.numero) // Elimina esa materia de cursadas
+                        uncheckDepend(mat.numero, "cursada")
                         uncheckDepend(mat.numero, "aprobada")
                         return newCursadas
                     })
-                    setAprobadas(prevAprobadas => prevAprobadas.filter(n => n !== mat.numero))
+                }
+            }
+        }else{ // Loopear todas las materias del programa
+            for(let mat of materias){
+                if(mat.aprobadas.includes(numero)){ // Si la materia necesita tener aprobada la materia "numero"
+                    setCursadas(prevCursadas => prevCursadas.filter(n => n !== mat.numero))
+                    setAprobadas(prevAprobadas => {
+                        const newAprobadas = prevAprobadas.filter(n => n !== mat.numero) // Elimina esa materia de aprobadas
+                        uncheckDepend(mat.numero, "cursada")
+                        uncheckDepend(mat.numero, "aprobada")
+                        return newAprobadas
+                    })
                 }
             }
         }
@@ -78,9 +77,9 @@ function Materias(){
     const toggleCursadas = (numero) => {
         setCursadas(prevCursadas => {
             if(prevCursadas.includes(numero)){
+                setAprobadas(prevAprobadas=> prevAprobadas.filter(n => n !== numero))
                 uncheckDepend(numero, "cursada")
                 uncheckDepend(numero, "aprobada")
-                setAprobadas(prevAprobadas=> prevAprobadas.filter(n => n !== numero))
                 return prevCursadas.filter(n => n !== numero) 
             }else{
                 return [...prevCursadas, numero]
@@ -103,9 +102,12 @@ function Materias(){
     const checker = (arr, target) => target.every(v => arr.includes(v));
 
     return (
-        <div className='materiasContainer'>
+        <div className="materiasContainer">
             {niveles.map(nivel => (
                 <div className='nivelBlock' key={nivel}>
+                    {/* <hr></hr> */}
+                    <h2>{nivel}° AÑO</h2>
+                    <hr></hr>
                     {materias.filter(mat => mat.nivel === nivel).map(mat => (
                         <div 
                             key={mat.numero} 
