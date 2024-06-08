@@ -3,3 +3,37 @@ body {
     margin: 0;
     // overflow: hidden;
 }
+
+.aws-btn {
+    --button-default-height: 55px;
+    --button-default-font-size: 14px;
+    --button-default-border-radius: 6px;
+    --button-horizontal-padding: 20px;
+    --button-raise-level: 6px;
+    --button-hover-pressure: 1;
+    --transform-speed: 0.185s;
+    --button-primary-color: #3a3a3a;
+    --button-primary-color-dark: #141414;
+    --button-primary-color-light: #fbfbfb;
+    --button-primary-color-hover: #2d2d2d;
+    --button-primary-color-active: #212121;
+    --button-primary-border: 2px solid #3a3a3a;
+    --button-secondary-color: #ccfff9 !important;
+    --button-secondary-color-dark: #3a3a3a !important;
+    --button-secondary-color-light: #3a3a3a !important;
+    --button-secondary-color-hover: #b5e3de !important;
+    --button-secondary-color-active: #8ac1bb !important;
+    --button-secondary-border: 2px solid #3a3a3a !important;
+    --button-anchor-color: #8bfea2;
+    --button-anchor-color-dark: #212121;
+    --button-anchor-color-light: #97735d;
+    --button-anchor-color-hover: #ffe727;
+    --button-anchor-color-active: #ffe727;
+    --button-anchor-border: 2px solid #876753;
+    --button-danger-color: #8bfea2 !important;
+    --button-danger-color-dark: #212121 !important;
+    --button-danger-color-light: #212121 !important;
+    --button-danger-color-hover: #46dd64 !important;
+    --button-danger-color-active: #549c62 !important;
+    --button-danger-border: 2px solid #000000 !important;
+}

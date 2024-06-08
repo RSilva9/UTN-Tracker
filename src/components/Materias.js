@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import LeaderLine from 'leader-line-new';
+import { CheckCircleFillIcon, XCircleFillIcon } from '@primer/octicons-react';
 
 function Materias() {
     const [materias, setMaterias] = useState([])
@@ -144,7 +145,7 @@ function Materias() {
             cursadasArrows.forEach(cursada => {
                 cursada.classList.add("scale")
                 cursada.classList.remove("transparent")
-                const line = new LeaderLine(cursada, clickedMateria, { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true })
+                const line = new LeaderLine(cursada, clickedMateria, { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true })
                 line.show('draw', { duration: 1000 })
                 newLines.push(line)
             })
@@ -152,7 +153,7 @@ function Materias() {
             aprobadasArrows.forEach(aprobada => {
                 aprobada.classList.add("scale")
                 aprobada.classList.remove("transparent")
-                const line = new LeaderLine(aprobada, clickedMateria, { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true })
+                const line = new LeaderLine(aprobada, clickedMateria, { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true })
                 line.show('draw', { duration: 1000 })
                 newLines.push(line)
             })
@@ -203,31 +204,44 @@ function Materias() {
                             <h2>{mat.nombre}</h2>
                             <div className='d-flex'>
                                 <div className='me-4'>
-                                    <label htmlFor={`Cursada-${mat.numero}`}>Cursada</label>
+                                    <label htmlFor={`Cursada-${mat.numero}`} className={`buttonCurs ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
+                                        <CheckCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? '' : 'd-none'}`} />
+                                        <XCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? 'd-none' : ''}`} />
+                                        Cursada
+                                    </label>
                                     <input
-                                        id={`Cursada-${mat.numero}`}
-                                        name="Cursada"
-                                        type='checkbox'
-                                        onChange={() => toggleCursadas(mat.numero)}
-                                        checked={cursadas.includes(mat.numero)}
-                                        disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
+                                    id={`Cursada-${mat.numero}`}
+                                    className='hidden'
+                                    name="Cursada"
+                                    type='checkbox'
+                                    onChange={() => toggleCursadas(mat.numero)}
+                                    checked={cursadas.includes(mat.numero)}
+                                    disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
                                     />
                                 </div>
                                 <div className='me-4'>
-                                    <label htmlFor={`Aprobada-${mat.numero}`}>Aprobada</label>
+                                    <label htmlFor={`Aprobada-${mat.numero}`} className={`buttonAprob ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
+                                        <CheckCircleFillIcon size={12} className={`me-2 ${aprobadas.includes(mat.numero) ? '' : 'd-none'}`} />
+                                        <XCircleFillIcon size={12} className={`me-2 ${aprobadas.includes(mat.numero) ? 'd-none' : ''}`} />
+                                        Aprobada
+                                    </label>
                                     <input
-                                        id={`Aprobada-${mat.numero}`}
-                                        name="Aprobada"
-                                        type='checkbox'
-                                        onChange={() => toggleAprobadas(mat.numero)}
-                                        checked={aprobadas.includes(mat.numero)}
-                                        disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
+                                    id={`Aprobada-${mat.numero}`}
+                                    className='hidden'
+                                    name="Aprobada"
+                                    type='checkbox'
+                                    onChange={() => toggleAprobadas(mat.numero)}
+                                    checked={aprobadas.includes(mat.numero)}
+                                    disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor={`Flechas-${mat.numero}`}>Correlativas</label>
+                                    <label htmlFor={`Flechas-${mat.numero}`} className='buttonCorrel'>
+                                        Correlativas
+                                    </label>
                                     <input
                                         id={`Flechas-${mat.numero}`}
+                                        className='hidden'
                                         name="Flechas"
                                         type='checkbox'
                                         onChange={(evt) => toggleArrows(mat.numero, evt)}
@@ -241,7 +255,7 @@ function Materias() {
                                     mat.cursadas.map(cursadaNumero =>
                                         materias.filter(mate => mate.numero === cursadaNumero).map(mate => <h4 key={mate.numero}>{mate.nombre}</h4>)
                                     )
-                                    : <h3>-</h3>}
+                                    : <h2>-</h2>}
                                 </div>
                                 <div>
                                     <h3>Aprobadas</h3>
@@ -249,7 +263,7 @@ function Materias() {
                                     mat.aprobadas.map(aprobadaNumero =>
                                         materias.filter(mate => mate.numero === aprobadaNumero).map(mate => <h4 key={mate.numero}>{mate.nombre}</h4>)
                                     )
-                                    : <h3>-</h3>}
+                                    : <h2>-</h2>}
                                 </div>
                             </div>
                         </div>
