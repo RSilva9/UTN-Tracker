@@ -145,7 +145,13 @@ function Materias() {
             cursadasArrows.forEach(cursada => {
                 cursada.classList.add("scale")
                 cursada.classList.remove("transparent")
-                const line = new LeaderLine(cursada, clickedMateria, { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true })
+                var lineConfig = {}
+                if(window.outerWidth > 425){
+                    lineConfig = { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true}
+                }else{
+                    lineConfig = { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true, path: 'arc', startSocket: 'bottom', endSocket: 'top' }
+                }
+                const line = new LeaderLine(cursada, clickedMateria, lineConfig)
                 line.show('draw', { duration: 1000 })
                 newLines.push(line)
             })
@@ -153,7 +159,13 @@ function Materias() {
             aprobadasArrows.forEach(aprobada => {
                 aprobada.classList.add("scale")
                 aprobada.classList.remove("transparent")
-                const line = new LeaderLine(aprobada, clickedMateria, { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true })
+                var lineConfig = {}
+                if(window.outerWidth > 425){
+                    lineConfig = { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true}
+                }else{
+                    lineConfig = { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true, path: 'arc', startSocket: 'bottom', endSocket: 'top' }
+                }
+                const line = new LeaderLine(aprobada, clickedMateria, lineConfig)
                 line.show('draw', { duration: 1000 })
                 newLines.push(line)
             })
@@ -195,8 +207,8 @@ function Materias() {
                             key={mat.numero}
                             className={`materia ${cursadas.includes(mat.numero) ? "" : "no-cursada"} 
                             ${aprobadas.includes(mat.numero) ? "aprobada" : ""}
-                            ${checker(cursadas, mat.cursadas) ? "d-block" : "unavailable"}
-                            ${checker(aprobadas, mat.aprobadas) ? "d-block" : "unavailable"}
+                            ${checker(cursadas, mat.cursadas) ? "" : "unavailable"}
+                            ${checker(aprobadas, mat.aprobadas) ? "" : "unavailable"}
                             `}
                             id={mat.numero}
                             data-open="false"

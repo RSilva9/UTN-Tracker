@@ -2,7 +2,7 @@ import { AwesomeButton } from 'react-awesome-button'
 
 function CareerButtons(){
     return(
-        <div className='d-flex justify-content-evenly'>
+        <div className='d-flex justify-content-evenly flex-wrap'>
             <AwesomeButton type='primary'>Sistemas</AwesomeButton>
             <AwesomeButton type='primary' disabled={true}>Civil</AwesomeButton>
             <AwesomeButton type='primary' disabled={true}>Energía Eléctrica</AwesomeButton>

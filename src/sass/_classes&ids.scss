@@ -29,7 +29,6 @@
 }
 
 .no-cursada{
-    // background-color: rgb(155, 185, 173) !important;
     background-color: grey !important;
 }
 
@@ -53,6 +52,13 @@
     opacity: 40%;
 }
 
+.hidden{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+//#region Buttons
 .disabledCheck{
     background-color: grey !important;
     filter: blur(50%);
@@ -62,27 +68,30 @@
     box-shadow: 5px 3px 0px 0px rgb(0, 0, 0) !important;
 }
 
-.buttonCurs{
+.buttonCustom{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
     border: solid black 1px;
-    // border-radius: 10%;
-    background-color: #57b193;
     color: white;
     padding: 15px;
     transition: 0.1s;
     box-shadow: 5px 3px 0px 0px rgb(0, 0, 0);
 }
 
+.buttonCurs{
+    @extend .buttonCustom;
+    background-color: #57b193;
+}
+
 .buttonAprob{
-    @extend .buttonCurs;
+    @extend .buttonCustom;
     background-color: #76b11f;
 }
 
 .buttonCorrel{
-    @extend .buttonCurs;
+    @extend .buttonCustom;
     background-color: rgb(218, 141, 0);
 }
 
@@ -102,8 +111,4 @@
     box-shadow: none;
 }
 
-.hidden{
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-}
+//#endregion
