@@ -1,17 +1,16 @@
+import { AwesomeButton } from "react-awesome-button";
 import CareerButtons from "./components/CareerButtons.js";
 import Materias from "./components/Materias.js";
+import ResetButton from "./components/ResetButton.js";
 
 function App() {
   return (
     <div className="App">
       <div className="d-flex mb-3">
-        <h1>UTN TRACKER - SEGUIDOR DE CARRERA</h1>
-        <button onClick={()=> {
-          localStorage.clear()
-          window.location.reload()
-        }} className="ms-3">Reiniciar progreso</button>
+        <img src="/img/utnTracker.webp" className="m-auto"></img>
       </div>
-      <CareerButtons/>
+      <CareerButtons />
+      <ResetButton />
       <Materias />
     </div>
   );

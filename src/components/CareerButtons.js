@@ -3,15 +3,15 @@ import { AwesomeButton } from 'react-awesome-button'
 function CareerButtons(){
     return(
         <div className='d-flex justify-content-evenly flex-wrap'>
-            <AwesomeButton type='primary'>Sistemas</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Civil</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Energía Eléctrica</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Electrónica</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Industrial</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Mecánica</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Naval</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Química</AwesomeButton>
-            <AwesomeButton type='primary' disabled={true}>Textil</AwesomeButton>
+            <AwesomeButton type='primary' className='mt-2'>Sistemas</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Civil</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Energía Eléctrica</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Electrónica</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Industrial</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Mecánica</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Naval</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Química</AwesomeButton>
+            <AwesomeButton type='primary' disabled={true} className='mt-2'>Textil</AwesomeButton>
         </div>
     )
 }

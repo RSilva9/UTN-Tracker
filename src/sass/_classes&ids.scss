@@ -4,6 +4,11 @@
     margin: 25px 0px;
     width: max-content;
 
+    h2{
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
     .nivelBlock{
         margin: 0px 60px 0px 15px;
 
@@ -18,12 +23,18 @@
             box-shadow: 5px 3px 0px 0px rgb(0, 0, 0);
             h2{
                 font-size: 1.5em;
+                font-weight: 600;
+                text-decoration: none;
             }
             h3{
                 font-weight: 700;
                 text-decoration: underline;
             }
             transition: 0.5s ease;
+
+            .correlInfo{
+                margin-top: 10px;
+            }
         }
     }
 }
@@ -76,7 +87,7 @@
     border: solid black 1px;
     color: white;
     padding: 15px;
-    transition: 0.1s;
+    transition: 0.2s;
     box-shadow: 5px 3px 0px 0px rgb(0, 0, 0);
 }
 
@@ -107,7 +118,7 @@
     background-color: orange;
 }
 
-.buttonCurs:active{
+.buttonCustom:active{
     box-shadow: none;
 }
 

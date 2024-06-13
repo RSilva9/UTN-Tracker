@@ -6,8 +6,10 @@ function Materias() {
     const [materias, setMaterias] = useState([])
     const [cursadas, setCursadas] = useState(JSON.parse(localStorage.getItem("cursadas")) || [])
     const [aprobadas, setAprobadas] = useState(JSON.parse(localStorage.getItem("aprobadas")) || [])
+    const [activeMaterias, setActiveMaterias] = useState([])
     const niveles = [1, 2, 3, 4, 5]
     const linesRef = useRef({})
+
 
     useEffect(() => {
         getMaterias()
@@ -105,23 +107,34 @@ function Materias() {
 
     const checker = (arr, target) => target.every(v => arr.includes(v))
 
+    const getRandomInt = (min, max)=> {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
     const toggleArrows = (numero, evt) => {
         const clickedMateria = document.getElementById(numero)
-        const materiasDOM = document.getElementsByClassName("materia")
         const cursadasArrows = []
         const aprobadasArrows = []
+        setActiveMaterias(prevActiveMaterias => [...prevActiveMaterias, clickedMateria])
 
         for (let mat of materias) {
+            //Busca todas las materias correlativas de la materia clickeada
             if (mat.numero === numero) {
                 for (let curs of mat.cursadas) {
                     const foundMateria = document.getElementById(curs)
                     cursadasArrows.push(foundMateria)
+                    setActiveMaterias(prevActiveMaterias => [...prevActiveMaterias, foundMateria])
                 }
                 for (let aprob of mat.aprobadas) {
                     const foundMateria = document.getElementById(aprob)
                     aprobadasArrows.push(foundMateria)
+                    setActiveMaterias(prevActiveMaterias => [...prevActiveMaterias, foundMateria])
                 }
             }
+
+            //Desactiva todos los otros botones de "Correlativa"
             if(evt.target.checked){
                 const check = document.getElementById(`Flechas-${mat.numero}`)
                 if(check.id != evt.target.id){
@@ -134,22 +147,13 @@ function Materias() {
         }
 
         if (evt.target.checked) {
-            clickedMateria.classList.add("scale")
-            for(let mat of materiasDOM){
-                if (Number(mat.id) !== numero) {
-                    mat.classList.add("transparent")
-                }
-            }
-
             const newLines = []
             cursadasArrows.forEach(cursada => {
-                cursada.classList.add("scale")
-                cursada.classList.remove("transparent")
                 var lineConfig = {}
                 if(window.outerWidth > 425){
                     lineConfig = { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true}
                 }else{
-                    lineConfig = { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true, path: 'arc', startSocket: 'bottom', endSocket: 'top' }
+                    lineConfig = { color: '#7FFFD4', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true, path: 'fluid', startSocket: 'left', endSocket: 'top' }
                 }
                 const line = new LeaderLine(cursada, clickedMateria, lineConfig)
                 line.show('draw', { duration: 1000 })
@@ -157,13 +161,11 @@ function Materias() {
             })
 
             aprobadasArrows.forEach(aprobada => {
-                aprobada.classList.add("scale")
-                aprobada.classList.remove("transparent")
                 var lineConfig = {}
                 if(window.outerWidth > 425){
                     lineConfig = { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true}
                 }else{
-                    lineConfig = { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true, path: 'arc', startSocket: 'bottom', endSocket: 'top' }
+                    lineConfig = { color: '#ADFF2F', endPlug: 'arrow2', hide: true, dropShadow: true, outline: true, outlineColor: 'black', endPlugOutline: true, path: 'fluid', startSocket: 'left', endSocket: 'top' }
                 }
                 const line = new LeaderLine(aprobada, clickedMateria, lineConfig)
                 line.show('draw', { duration: 1000 })
@@ -172,20 +174,7 @@ function Materias() {
 
             linesRef.current[numero] = newLines;
         } else {
-            clickedMateria.classList.remove("scale")
-            aprobadasArrows.forEach(aprobada => {
-                aprobada.classList.remove("scale")
-            })
-            cursadasArrows.forEach(cursada => {
-                cursada.classList.remove("scale")
-            })
-
-            Array.from(materiasDOM).forEach(mat => {
-                if (Number(mat.id) !== numero) {
-                    mat.classList.remove("transparent")
-                }
-            })
-
+            setActiveMaterias([])
             if (linesRef.current[numero]) {
                 linesRef.current[numero].forEach(line => {
                     line.hide('draw', { duration: 500 })
@@ -209,12 +198,17 @@ function Materias() {
                             ${aprobadas.includes(mat.numero) ? "aprobada" : ""}
                             ${checker(cursadas, mat.cursadas) ? "" : "unavailable"}
                             ${checker(aprobadas, mat.aprobadas) ? "" : "unavailable"}
+                            ${activeMaterias.length > 0 && activeMaterias.includes(document.getElementById(mat.numero)) ? "scale" : ""}
+                            ${activeMaterias.length > 0 && !activeMaterias.includes(document.getElementById(mat.numero)) ? "transparent" : ""}
+                            ${activeMaterias.length > 0 && activeMaterias[0] === document.getElementById(mat.numero) ? "expanded" : ""}
                             `}
                             id={mat.numero}
                             data-open="false"
                         >
-                            <h2>{mat.nombre}</h2>
-                            <div className='d-flex'>
+                            <div className='materiaTitle'>
+                                <h2>{mat.nombre}</h2>
+                            </div>
+                            <div className='d-flex materiaBody'>
                                 <div className='me-4'>
                                     <label htmlFor={`Cursada-${mat.numero}`} className={`buttonCurs ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
                                         <CheckCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? '' : 'd-none'}`} />
@@ -260,7 +254,7 @@ function Materias() {
                                     />
                                 </div>
                             </div>
-                            <div className='mt-2'>
+                            <div className='correlInfo'>
                                 <div>
                                     <h3>Cursadas</h3>
                                     {mat.cursadas.length > 0 ? 

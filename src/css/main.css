@@ -32,12 +32,36 @@
   --button-danger-border: 2px solid #000000 !important;
 }
 
+img {
+  width: 300px;
+}
+
+body {
+  background-image: url("/public/img/bg.png");
+}
+
+body::-webkit-scrollbar {
+  height: 1.5em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(43, 43, 43);
+}
+
 .materiasContainer {
   display: flex;
   flex-direction: row;
   margin: 25px 0px;
   width: -moz-max-content;
   width: max-content;
+}
+.materiasContainer h2 {
+  font-weight: 700;
+  text-decoration: underline;
 }
 .materiasContainer .nivelBlock {
   margin: 0px 60px 0px 15px;
@@ -55,10 +79,15 @@
 }
 .materiasContainer .nivelBlock .materia h2 {
   font-size: 1.5em;
+  font-weight: 600;
+  text-decoration: none;
 }
 .materiasContainer .nivelBlock .materia h3 {
   font-weight: 700;
   text-decoration: underline;
+}
+.materiasContainer .nivelBlock .materia .correlInfo {
+  margin-top: 10px;
 }
 
 .no-cursada {
@@ -108,7 +137,7 @@
   border: solid black 1px;
   color: white;
   padding: 15px;
-  transition: 0.1s;
+  transition: 0.2s;
   box-shadow: 5px 3px 0px 0px rgb(0, 0, 0);
 }
 
@@ -136,12 +165,38 @@
   background-color: orange;
 }
 
-.buttonCurs:active {
+.buttonCustom:active, .buttonCurs:active, .buttonAprob:active, .buttonCorrel:active {
   box-shadow: none;
 }
 
 @media (max-width: 425px) {
   .materiasContainer {
     flex-direction: column;
+    width: 100vw;
+    margin: 0px;
+  }
+  .materiasContainer .nivelBlock {
+    padding: 25px;
+    margin: 0px;
+  }
+  .materiasContainer .nivelBlock .materia {
+    width: 100%;
+    height: 120px;
+  }
+  .materiasContainer .nivelBlock .materia h2 {
+    font-size: 1.25em;
+  }
+  .materiasContainer .nivelBlock .materia label {
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+  .materiasContainer .nivelBlock .materia .correlInfo {
+    margin-top: 40px;
+  }
+  .materiasContainer .nivelBlock .materia .materiaBody {
+    justify-content: center;
+  }
+  .buttonCustom, .buttonCurs, .buttonAprob, .buttonCorrel {
+    width: 22vw;
   }
 }/*# sourceMappingURL=main.css.map */
