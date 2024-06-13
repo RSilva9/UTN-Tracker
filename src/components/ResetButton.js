@@ -11,6 +11,9 @@ function ResetButton(){
             confirmButtonText: "Seguro",
             denyButtonText: `Era joda`,
             background: 'black',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            allowEnterKey: false,
             color: 'white',
             confirmButtonColor: 'green'
             }).then((result) => {

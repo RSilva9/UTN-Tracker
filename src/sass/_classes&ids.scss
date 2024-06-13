@@ -30,7 +30,7 @@
                 font-weight: 700;
                 text-decoration: underline;
             }
-            transition: 0.5s ease;
+            transition: height 0.5s;
 
             .correlInfo{
                 margin-top: 10px;
@@ -52,7 +52,7 @@
 }
 
 .expanded{
-    height: 400px !important;
+    height: 470px !important;
 }
 
 .scale{
