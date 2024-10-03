@@ -211,6 +211,9 @@ body::-webkit-scrollbar-thumb {
   .buttonCustom, .buttonCurs, .buttonAprob, .buttonCursando, .buttonCorrel {
     width: 22vw;
   }
+  .expanded {
+    height: 510px !important;
+  }
 }
 @media (min-width: 426px) {
   .materiasContainer .materia:hover {
