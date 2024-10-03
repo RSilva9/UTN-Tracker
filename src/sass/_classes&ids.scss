@@ -39,12 +39,18 @@
     }
 }
 
+
+
 .no-cursada{
     background-color: grey !important;
 }
 
 .aprobada{
     background-color: greenyellow !important;
+}
+
+.cursando{
+    background-color: #fdf90d !important;
 }
 
 .unavailable{
@@ -101,6 +107,12 @@
     background-color: #76b11f;
 }
 
+.buttonCursando{
+    @extend .buttonCustom;
+    background-color: #b6b30e;
+}
+
+
 .buttonCorrel{
     @extend .buttonCustom;
     background-color: rgb(218, 141, 0);
@@ -112,6 +124,10 @@
 
 .buttonAprob:hover{
     background-color: #8ace25;
+}
+
+.buttonCursando:hover{
+    background-color: #fffd78;
 }
 
 .buttonCorrel:hover{

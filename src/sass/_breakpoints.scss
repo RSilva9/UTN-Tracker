@@ -9,7 +9,7 @@
             margin: 0px;
             .materia{
                 width: 100%;
-                height: 120px;
+                height: 160px;
                 h2{
                     font-size: 1.25em;
                 }
@@ -29,5 +29,13 @@
 
     .buttonCustom{
         width: 22vw;
+    }
+}
+
+@media (min-width: 426px){
+    .materiasContainer{
+        .materia:hover{
+            height: 160px;
+        }
     }
 }

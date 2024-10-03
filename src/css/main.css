@@ -98,6 +98,10 @@ body::-webkit-scrollbar-thumb {
   background-color: greenyellow !important;
 }
 
+.cursando {
+  background-color: #fdf90d !important;
+}
+
 .unavailable {
   background-color: red !important;
 }
@@ -129,7 +133,7 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 5px 3px 0px 0px rgb(0, 0, 0) !important;
 }
 
-.buttonCustom, .buttonCorrel, .buttonAprob, .buttonCurs {
+.buttonCustom, .buttonCorrel, .buttonCursando, .buttonAprob, .buttonCurs {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,6 +153,10 @@ body::-webkit-scrollbar-thumb {
   background-color: #76b11f;
 }
 
+.buttonCursando {
+  background-color: #b6b30e;
+}
+
 .buttonCorrel {
   background-color: rgb(218, 141, 0);
 }
@@ -161,11 +169,15 @@ body::-webkit-scrollbar-thumb {
   background-color: #8ace25;
 }
 
+.buttonCursando:hover {
+  background-color: #fffd78;
+}
+
 .buttonCorrel:hover {
   background-color: orange;
 }
 
-.buttonCustom:active, .buttonCurs:active, .buttonAprob:active, .buttonCorrel:active {
+.buttonCustom:active, .buttonCurs:active, .buttonAprob:active, .buttonCursando:active, .buttonCorrel:active {
   box-shadow: none;
 }
 
@@ -181,7 +193,7 @@ body::-webkit-scrollbar-thumb {
   }
   .materiasContainer .nivelBlock .materia {
     width: 100%;
-    height: 120px;
+    height: 160px;
   }
   .materiasContainer .nivelBlock .materia h2 {
     font-size: 1.25em;
@@ -196,7 +208,12 @@ body::-webkit-scrollbar-thumb {
   .materiasContainer .nivelBlock .materia .materiaBody {
     justify-content: center;
   }
-  .buttonCustom, .buttonCurs, .buttonAprob, .buttonCorrel {
+  .buttonCustom, .buttonCurs, .buttonAprob, .buttonCursando, .buttonCorrel {
     width: 22vw;
+  }
+}
+@media (min-width: 426px) {
+  .materiasContainer .materia:hover {
+    height: 160px;
   }
 }/*# sourceMappingURL=main.css.map */

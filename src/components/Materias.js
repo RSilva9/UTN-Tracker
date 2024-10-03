@@ -6,10 +6,10 @@ function Materias() {
     const [materias, setMaterias] = useState([])
     const [cursadas, setCursadas] = useState(JSON.parse(localStorage.getItem("cursadas")) || [])
     const [aprobadas, setAprobadas] = useState(JSON.parse(localStorage.getItem("aprobadas")) || [])
+    const [cursando, setCursando] = useState(JSON.parse(localStorage.getItem("cursando")) || [])
     const [activeMaterias, setActiveMaterias] = useState([])
     const niveles = [1, 2, 3, 4, 5]
     const linesRef = useRef({})
-
 
     useEffect(() => {
         getMaterias()
@@ -22,6 +22,10 @@ function Materias() {
     useEffect(() => {
         localStorage.setItem("aprobadas", JSON.stringify(aprobadas))
     }, [aprobadas])
+
+    useEffect(() => {
+        localStorage.setItem("cursando", JSON.stringify(cursando))
+    }, [cursando])
 
     const getMaterias = async () => {
         const response = await fetch("/carreras/sistemas.json")
@@ -65,7 +69,7 @@ function Materias() {
                     })
                 }
             }
-        } else {
+        } else if(tipo === "aprobada") {
             for (let mat of materias) {
                 if (mat.aprobadas.includes(numero)) {
                     setCursadas(prevCursadas => prevCursadas.filter(n => n !== mat.numero))
@@ -88,6 +92,7 @@ function Materias() {
                 uncheckDepend(numero, "aprobada")
                 return prevCursadas.filter(n => n !== numero)
             } else {
+                setCursando(prevCursando => prevCursando.filter(n => n !== numero))
                 return [...prevCursadas, numero]
             }
         })
@@ -100,7 +105,21 @@ function Materias() {
                 return prevAprobadas.filter(n => n !== numero)
             } else {
                 setCursadas(prevCursadas => [...prevCursadas, numero])
+                setCursando(prevCursando => prevCursando.filter(n => n !== numero))
                 return [...prevAprobadas, numero]
+            }
+        })
+    }
+
+    const toggleCursando = (numero) => {
+        setCursando(prevCursando => {
+            if(prevCursando.includes(numero)) {
+                
+                return prevCursando.filter(n => n !== numero)
+            }else {
+                setAprobadas(prevAprobadas => prevAprobadas.filter(n => n !== numero))
+                setCursadas(prevCursadas => prevCursadas.filter(n => n !== numero))
+                return [...prevCursando, numero]
             }
         })
     }
@@ -196,6 +215,7 @@ function Materias() {
                             key={mat.numero}
                             className={`materia ${cursadas.includes(mat.numero) ? "" : "no-cursada"} 
                             ${aprobadas.includes(mat.numero) ? "aprobada" : ""}
+                            ${cursando.includes(mat.numero) ? "cursando" : ""}
                             ${checker(cursadas, mat.cursadas) ? "" : "unavailable"}
                             ${checker(aprobadas, mat.aprobadas) ? "" : "unavailable"}
                             ${activeMaterias.length > 0 && activeMaterias.includes(document.getElementById(mat.numero)) ? "scale" : ""}
@@ -210,21 +230,42 @@ function Materias() {
                             </div>
                             <div className='d-flex materiaBody'>
                                 <div className='me-4'>
-                                    <label htmlFor={`Cursada-${mat.numero}`} className={`buttonCurs ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
-                                        <CheckCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? '' : 'd-none'}`} />
-                                        <XCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? 'd-none' : ''}`} />
-                                        Cursada
-                                    </label>
-                                    <input
-                                    id={`Cursada-${mat.numero}`}
-                                    className='hidden'
-                                    name="Cursada"
-                                    type='checkbox'
-                                    onChange={() => toggleCursadas(mat.numero)}
-                                    checked={cursadas.includes(mat.numero)}
-                                    disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
-                                    />
+                                    <div>
+                                        <label htmlFor={`Cursada-${mat.numero}`} className={`buttonCurs ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
+                                            <CheckCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? '' : 'd-none'}`} />
+                                            <XCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? 'd-none' : ''}`} />
+                                            Cursada
+                                        </label>
+                                        <input
+                                        id={`Cursada-${mat.numero}`}
+                                        className='hidden'
+                                        name="Cursada"
+                                        type='checkbox'
+                                        onChange={() => toggleCursadas(mat.numero)}
+                                        checked={cursadas.includes(mat.numero)}
+                                        disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
+                                        />
+                                    </div>
+                                    <div className='mt-3'>
+                                        <label htmlFor={`Cursando-${mat.numero}`} className={`buttonCursando ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
+                                            <CheckCircleFillIcon size={12} className={`me-2 ${cursando.includes(mat.numero) ? '' : 'd-none'}`} />
+                                            <XCircleFillIcon size={12} className={`me-2 ${cursando.includes(mat.numero) ? 'd-none' : ''}`} />
+                                            Cursando
+                                        </label>
+                                        <input
+                                        id={`Cursando-${mat.numero}`}
+                                        className='hidden'
+                                        name="Cursando"
+                                        type='checkbox'
+                                        onChange={() => toggleCursando(mat.numero)}
+                                        checked={cursando.includes(mat.numero)}
+                                        disabled={!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas))}
+                                        />
+                                    </div>
                                 </div>
+
+                                
+
                                 <div className='me-4'>
                                     <label htmlFor={`Aprobada-${mat.numero}`} className={`buttonAprob ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
                                         <CheckCircleFillIcon size={12} className={`me-2 ${aprobadas.includes(mat.numero) ? '' : 'd-none'}`} />
