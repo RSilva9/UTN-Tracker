@@ -4,8 +4,8 @@ Metí todas las materias y sus correlativas en un JSON y las distribuí en colum
 
 
 *TODO:*
-• Incluír los programas de otras carreras.
-• Agregar las materias electivas.
+  - Incluír los programas de otras carreras.
+  - Agregar las materias electivas.
 
 
 
