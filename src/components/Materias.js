@@ -234,7 +234,7 @@ function Materias() {
                                         <label htmlFor={`Cursada-${mat.numero}`} className={`buttonCurs ${!(checker(cursadas, mat.cursadas) && checker(aprobadas, mat.aprobadas)) ? 'disabledCheck' : ""}`}>
                                             <CheckCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? '' : 'd-none'}`} />
                                             <XCircleFillIcon size={12} className={`me-2 ${cursadas.includes(mat.numero) ? 'd-none' : ''}`} />
-                                            Cursada
+                                            Firmada
                                         </label>
                                         <input
                                         id={`Cursada-${mat.numero}`}
@@ -297,7 +297,7 @@ function Materias() {
                             </div>
                             <div className='correlInfo'>
                                 <div>
-                                    <h3>Cursadas</h3>
+                                    <h3>Firmadas</h3>
                                     {mat.cursadas.length > 0 ? 
                                     mat.cursadas.map(cursadaNumero =>
                                         materias.filter(mate => mate.numero === cursadaNumero).map(mate => <h4 key={mate.numero}>{mate.nombre}</h4>)
